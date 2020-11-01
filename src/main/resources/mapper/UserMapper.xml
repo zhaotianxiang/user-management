@@ -3,7 +3,7 @@
 <mapper namespace="com.ustc.edu.mapper.UserMapper">
 
     <resultMap id="userMap" type="com.ustc.edu.model.User">
-        <id property="id" column="id" />
+        <id property="id" column="id"/>
         <result property="userName" column="user_name"/>
         <result property="userPassword" column="user_password"/>
         <result property="userEmail" column="user_email"/>
@@ -19,4 +19,24 @@
     <select id="selectById" resultMap="userMap">
         select id,user_name,user_password,user_email,user_info,head_img,create_time from user where id = #{id}
     </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into user(user_name,user_password,user_email,user_info,head_img,create_time)
+        values(#{userName},#{userPassword},#{userEmail},#{userInfo},#{headImg},#{createTime})
+    </insert>
+
+    <update id="updateById" >
+        update user
+        set user_name = #{userName},
+        user_password = #{userPassword},
+        user_email = #{userEmail},
+        user_info = #{userInfo},
+        head_img = #{headImg},
+        create_time = #{createTime}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        delete from user where id = #{id}
+    </delete>
 </mapper>

@@ -17,13 +17,10 @@ import java.util.List;
 public class UserManageService {
     @Autowired
     private CountryMapper countryMapper;
-
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private RoleMapper roleMapper;
-
     @Autowired
     private PrivilegeMapper privilegeMapper;
 
@@ -43,8 +40,19 @@ public class UserManageService {
         return privilegeMapper.selectAll();
     }
 
-    public List<User> selectUserByUserId(long id) {
+    public User selectUserByUserId(long id) {
         return userMapper.selectById(id);
     }
 
+    public int insertUser(User user){
+        return userMapper.insert(user);
+    }
+
+    public int updateUserById(User user){
+        return userMapper.updateById(user);
+    }
+
+    public int deleteUserById(User user){
+        return userMapper.deleteById(user);
+    }
 }
