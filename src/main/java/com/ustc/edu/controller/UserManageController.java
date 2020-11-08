@@ -65,20 +65,20 @@ public class UserManageController {
     @ApiOperation(value = "新增用户信息", notes = "新增用户信息")
     @ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
     @PostMapping("/insert")
-    public User insert(@RequestBody User user) {
-        return user;
+    public int insert(@RequestBody User user) {
+        return userManageService.insertUser(user);
     }
 
-    @ApiOperation(value = "删除用户信息", notes = "删除用户信息")
+    @ApiOperation("删除用户信息")
     @DeleteMapping("/delete")
-    public String delete(@RequestParam String id) {
-        return "success";
+    public int delete(@RequestBody User user) {
+        return userManageService.deleteUserById(user);
     }
 
-    @ApiOperation(value = "修改用户信息", notes = "修改用户信息")
-    @PutMapping("/update")
-    public String update() {
-        return "success";
+    @ApiOperation("修改用户信息")
+    @PostMapping("/update")
+    public int update(@RequestBody  User user) {
+        return userManageService.updateUserById(user);
     }
 }
 
